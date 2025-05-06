@@ -29,7 +29,18 @@ vim.keymap.set("n", "<leader>rn", function()
   vim.lsp.buf.rename()
 end, opts)
 local map = vim.keymap.set
-map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-map("n", "<leader>gG", function() LazyVim.lazygit() end, { desc = "Lazygit (cwd)" })
-map("n", "<leader>gb", LazyVim.lazygit.blame_line, { desc = "Git Blame Line" })
-map("n", "<leader>gB", LazyVim.lazygit.browse, { desc = "Git Browse" })
+map("n", "<leader>gg", function()
+  LazyVim.lazygit({ cwd = LazyVim.root.git() })
+end, { desc = "Lazygit (Root Dir)" })
+map("n", "<leader>gG", function()
+  LazyVim.lazygit()
+end, { desc = "Lazygit (cwd)" })
+map("n", "<leader>gb", Snacks.lazygit.blame_line, { desc = "Git Blame Line" })
+map("n", "<leader>gB", Snacks.lazygit.browse, { desc = "Git Browse" })
+
+local run_stree = function()
+  local filename = vim.fn.expand
+  vim.cmd("silent !stree write " .. filename)
+end
+
+vim.keymap.set("n", "<leader>st", run_stree)
