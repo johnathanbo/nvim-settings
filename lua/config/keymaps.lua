@@ -6,12 +6,6 @@
 -- Quick chat with Copilot
 --
 --
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>0",
-  ":lua local input = vim.fn.input('Quick Chat: ') if input ~= '' then require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer }) end<CR>",
-  { noremap = true, silent = true, expr = false, desc = "CopilotChat - Quick chat" }
-)
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = true, silent = true })
 
 local opts = { noremap = true, silent = true }
@@ -42,5 +36,5 @@ local run_stree = function()
   local filename = vim.fn.expand
   vim.cmd("silent !stree write " .. filename)
 end
-
-vim.keymap.set("n", "<leader>st", run_stree)
+vim.keymap.set("n", "<leader>1", run_stree)
+vim.keymap.set("n", "<leader>cC", "<cmd>ClaudeCode<CR>", { desc = "Toggle Claude Code" })
